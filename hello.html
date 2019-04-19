@@ -1,42 +1,38 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-    <title>Global FTC Tournament App</title>
+<title>Global FTC Tournament App</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+<style type="text/css">
+
+body {
+	background: cyan;
 }
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+#widget {
+	width: 1500px;
+	height: 300px;
+	font: normal 10px verdana;
+	text-align: center;
+	margin: 40px auto;
+	border: 5px #aaa;
+	border-style: outset inset inset outset;
+	background: url(http://www.grsites.com/textures/misc/misc142.jpg);
 }
-
-#myInput {
-  border-box: box-sizing;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
+form {
+	width: 98%;
+	margin: 100px 0 60px 0;
 }
-
-#myInput:focus {outline: 3px solid #ddd;}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
+select {
+    width: 190px;
+    height: 30px;
+    font: normal 11px verdana;
+	color: #fff;
+	background: #3e8;
 }
-
-.dropdown-content {
-  display: none;
+#txtregion {
+	display: none;
   position: absolute;
   background-color: #f6f6f6;
   min-width: 230px;
@@ -45,60 +41,36 @@
   z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+#txtplacename {
+    display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
 }
 
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
 </style>
+<script type="text/javascript" src="selection.js"></script>
 </head>
 <body>
-
-<h2>Global FTC Tournament App</h2>
-
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Choose Country</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#USA">USA</a>
-    <a href="#Germany">Germany<a>
-    <a href="#Australia">Australia</a>
-    <a href="#UK">UK</a>
-    <a href="#Korea">Korea</a>
-    <a href="#Taiwan">Taiwan</a>
-    <a href="#China">China</a>
-  </div>
-</div>
-
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
+        <h1 align = "center"><font face ="Castellar">Global FTC Tournament App</font></h1>
+<div id="widget">
+<form><font size = "+2" face = "Lucida Bright">
+Region&raquo; <select onchange="set_country(this,country,city_state)" size="1" name="region">
+<option value="" selected="selected">SELECT REGION</option>
+<option value=""></option>
+<script type="text/javascript">
+setRegions(this);
 </script>
+</select>
+Country&raquo; <select name="country" size="1" disabled="disabled" onchange="set_city_state(this,city_state)"></select>
+City/State&raquo; <select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)"></select>
+</form></font>
+<div id="txtregion"></div>
+<div id="txtplacename"></div>
+</div>
 
 </body>
 </html>
-
